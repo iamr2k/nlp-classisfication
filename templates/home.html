@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+
+
+
+    <header>
+    
+	<div id="brandname">
+		<center> ML App </center>
+	    <center> Abusive content prediction  </center>   
+	       <img class="XLR" src="{{ url_for('static', filename='XLR.png') }}">
+    </header>
+
+
+    <div class="content">   
+
+
+            <ul>    
+
+                  <p class="para"><b>Please type your text below then press the Predict button </b></p>
+                    
+		
+            </ul>
+
+    <div class="ml-container">
+
+				<form action="{{ url_for('predict')}}" method="POST">
+				<br>
+				<!-- <input type="text" name="comment"/> -->
+				<textarea name="message" rows="10" cols="80"></textarea>
+				<br/>
+
+				<input class="btn1" type=submit value=predict>
+		
+    </form>
+		
+    </div>
+            
+
+
+
+
+
+
+	
+    
+    
+    
+	
+   
+
+    <div class="results">
+
+
+
+
+            <br>
+            <br>
+            </form>
+
+<br>
+
+         </div>
+
+   </div>
+       
+</body>
+</body>
+</html>
