@@ -6,9 +6,9 @@
 }
 
 body{
-	font-family: 'Montserrat', sans-serif;
+	font-family: 'Comfortaa' ;
 	padding: 0px;
-	background-color:#f4f3f3;
+	background-color:#f9f7f7;
 }
 
 .container{
@@ -18,23 +18,23 @@ body{
 }
 
 header{
-	background:#03A9F4;#35434a;
-	border-bottom:#448AFF 3px solid;
-	height: 40vh;
+	background:#112d4e;#35434a;
+	
+	height: 30vh;
 	width:100%;
-	padding-top:30px;
-	-webkit-box-shadow: -1px 2px 29px -6px rgba(0,0,0,0.75);
--moz-box-shadow: -1px 2px 29px -6px rgba(0,0,0,0.75);
-box-shadow: -1px 2px 29px -6px rgba(0,0,0,0.75);
+	padding-top:20px;
+	-webkit-box-shadow: -1px 5px 30px -6px rgba(0,0,0,0.75);
+-moz-box-shadow: -1px 5px 30px -6px rgba(0,0,0,0.75);
+box-shadow: -1px 5px 30px -6px rgba(0,0,0,0.75);
 
 }
 
 
 #brandname{
 	height: 30vh;
-	font-size:30px;
+	font-size:35px;
 	color: #fff;
-	margin: 30px;
+	margin: 40px;
 
 }
 
@@ -82,31 +82,32 @@ img{
 
 .para{
 	margin-top: 25px;
+	font-family: 'Comfortaa' ;
 }
 
-.btn1{
+.btn1:hover{
 
-	background-color: #2196F3;
-	padding: 1.7%;
+	background-color: #3f72af;
+	padding: 1.75%;
 	border:none;
-	border-radius: 8px;
+	border-radius: 7px;
 	border: 1px solid white;
 	color: white;
-	font-family: 'Montserrat', sans-serif;
+	font-family: 'Comfortaa' ;
 	cursor: pointer;
 	transition: all 0.4s;
 
 }
 
-.btn1:hover{
+.btn1{
 	background-color: white;
-	padding: 2%;
+	padding: 1.7%;
 	border:none;
-	border-radius: 8px;
-	color: #2196F3;
-	font-family: 'Montserrat', sans-serif;
+	border-radius: 7px;
+	color: #3f72af;
+	font-family: 'Comfortaa' ;
 	cursor: pointer;
-	border: 1px solid #2196F3;
+	border: 1px solid #3f72af;
 }
 
 
