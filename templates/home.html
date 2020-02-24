@@ -1,7 +1,7 @@
     <!DOCTYPE html>
     <html lang="en">
     <head>
-        <link href="com/css?family=Montserrat&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Comfortaa&display=swap" rel="stylesheet">
         <meta charset="UTF-8">
         <title>ML APP</title>
         <link rel="stylesheet" type="text/css" href="static/style.css">
@@ -20,13 +20,14 @@
 
             
 
-    		<center> ML App </center>
-    	    <center> Abusive content prediction  </center>   
+    		<right> Deep Learning </right>
+            <center> </center>
+    	    <right> Abusive content prediction app  </right>   
     	    
             <div class="button_group">
 
-                    <div id="fb" class="sm_b" id="facebook" onclick="window.location.href='https://www.linkedin.com/in/rahulr2k'" > <i class="fab fa-linkedin-in"></i> </div>
-                    <div class="sm_b" id="facebook" onclick="window.location.href='https://www.instagram.com/i.m_r2k'" > <i class="fab fa-instagram"></i> </div>
+                    <div id="fb" class="sm_b" id="facebook" onclick="window.open('https://www.linkedin.com/in/rahulr2k', '_blank')"> <i class="fab fa-linkedin-in"></i> </div>
+                    <div id="fb" class="sm_b" id="facebook" onclick="window.open('https://www.instagram.com/i.m_r2k', '_blank')" > <i class="fab fa-instagram"></i> </div>
                     
             </div>
 
@@ -41,7 +42,7 @@
 
                 <ul>    
 
-                      <p class="para"><b>Please type your text below then press the Predict button </b></p>
+                      <p class="para"><b>Type your text below then press the Predict button </b></p>
                         
     		
                 </ul>
@@ -51,7 +52,7 @@
     				<form action="{{ url_for('predict')}}" method="POST">
     				<br>
     				<!-- <input type="text" name="comment"/> -->
-    				<textarea name="message" rows="10" cols="80"></textarea>
+    				<textarea name="message" rows="10" cols="100"></textarea>
     				<br/>
 
     				<input class="btn1" type=submit value=predict>
