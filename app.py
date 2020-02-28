@@ -40,9 +40,9 @@ def predict():
         data.cleaned = data.cleaned.str.replace('excelr',' ')
         data.cleaned = data.cleaned.str.replace('subject',' ')
 
-        loaded_model = pickle.load(open("model.pkl", 'rb'))
+        loaded_model = pickle.load(open("model1.pkl", 'rb'))
         word_vectorizer = pickle.load(open("wvector.pkl", 'rb'))
-        char_vectorizer = pickle.load(open("cvector.pkl", 'rb'))
+        char_vectorizer = pickle.load(open("cvector1.pkl", 'rb'))
         
         train_word_features = word_vectorizer.transform(data.cleaned)
         train_char_features = char_vectorizer.transform(data.cleaned)
