@@ -141,6 +141,12 @@ img{
 	font-size:25px;
 	cursor:pointer;
 	color:white;
+	
+#fb:hover{
+
+	background-color:transparent;
+	padding: 1.75%;
+	transition: all 0.6s;
 
 }
 
