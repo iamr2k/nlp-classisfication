@@ -13,16 +13,20 @@ from sklearn.externals import joblib
 import numpy as np
 from nltk.stem import PorterStemmer
 from nltk.tokenize import sent_tokenize, word_tokenize
+from nltk.stem.wordnet import WordNetLemmatizer
 
-ps = PorterStemmer()
-def stem(filtered_sent):
-    stem_words = []
-    for w in filtered_sent:
-        stem_words.append(ps.stem(w))
-    return stem_words
+
 def token(text):
     tokenized_word=word_tokenize(text)
     return tokenized_word
+
+def lem(filtered_sent):
+    lem_words = []
+    lem = WordNetLemmatizer()
+    
+    for w in filtered_sent:
+        lem_words.append(lem.lemmatize(w,"v"))
+    return lem_words
 
 def stop(tokenized_word):
     filtered_sent=[]
@@ -64,13 +68,13 @@ def predict():
         data.cleaned = data.cleaned.str.replace('excelr',' ')
         data.cleaned = data.cleaned.str.replace('subject',' ')
         data["tokenized"] = data.cleaned.apply(token)
-        data.tokenized = data.tokenized.apply(stop)
-        data.tokenized = data.tokenized.apply(stem)
-        data["detokenized"] = data.tokenized.apply(detok)
+        data['lemmatized'] = data.tokenized.apply(lem)
+        data.lemmatized = data.lemmatized.apply(stop)
+        data["detokenized"] = data.lemmatized.apply(detok)
 
-        loaded_model = pickle.load(open("modelv(2).pkl", 'rb'))
-        word_vectorizer = pickle.load(open("rfwvector.pkl", 'rb'))
-        char_vectorizer = pickle.load(open("rfcvector1.pkl", 'rb'))
+        loaded_model = pickle.load(open("rfmodel.pkl", 'rb'))
+        word_vectorizer = pickle.load(open("rfwvector2.pkl", 'rb'))
+        char_vectorizer = pickle.load(open("rfcvector2.pkl", 'rb'))
         
         train_word_features = word_vectorizer.transform(data.detokenized)
         train_char_features = char_vectorizer.transform(data.detokenized)
