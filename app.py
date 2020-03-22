@@ -74,7 +74,7 @@ def predict():
 
         loaded_model = pickle.load(open("rfmodel.pkl", 'rb'))
         word_vectorizer = pickle.load(open("wvector.pkl", 'rb'))
-        char_vectorizer = pickle.load(open("cvector.pkl", 'rb'))
+        char_vectorizer = pickle.load(open("cvector1.pkl", 'rb'))
         
         train_word_features = word_vectorizer.transform(data.detokenized)
         train_char_features = char_vectorizer.transform(data.detokenized)
