@@ -14,6 +14,15 @@ import numpy as np
 from nltk.stem import PorterStemmer
 from nltk.tokenize import sent_tokenize, word_tokenize
 from nltk.stem.wordnet import WordNetLemmatizer
+nltk.download('punkt')
+from nltk.tokenize import word_tokenize
+nltk.download('stopwords')
+from nltk.corpus import stopwords
+nltk.download('wordnet')
+stop_words=set(stopwords.words("english"))
+from nltk.stem.wordnet import WordNetLemmatizer
+from wordcloud import WordCloud, STOPWORDS
+stopwords = set(STOPWORDS)
 
 
 def token(text):
