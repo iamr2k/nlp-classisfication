@@ -11,7 +11,30 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.externals import joblib
 import numpy as np
+from nltk.stem import PorterStemmer
+from nltk.tokenize import sent_tokenize, word_tokenize
 
+ps = PorterStemmer()
+def stem(filtered_sent):
+    stem_words = []
+    for w in filtered_sent:
+        stem_words.append(ps.stem(w))
+    return stem_words
+def token(text):
+    tokenized_word=word_tokenize(text)
+    return tokenized_word
+
+def stop(tokenized_word):
+    filtered_sent=[]
+    for w in tokenized_word:
+        if w not in stop_words:
+            filtered_sent.append(w)
+    return filtered_sent
+
+from nltk.tokenize.treebank import TreebankWordDetokenizer
+def detok(sent):
+    
+    return(TreebankWordDetokenizer().detokenize(sent))
 
 app = Flask(__name__)
 
@@ -39,13 +62,17 @@ def predict():
         data.cleaned = data.cleaned.str.replace('from',' ')
         data.cleaned = data.cleaned.str.replace('excelr',' ')
         data.cleaned = data.cleaned.str.replace('subject',' ')
+        data["tokenized"] = data.cleaned.apply(token)
+        data.tokenized = data.tokenized.apply(stop)
+        data.tokenized = data.tokenized.apply(stem)
+        data["detokenized"] = data.tokenized.apply(detok)
 
         loaded_model = pickle.load(open("model1.pkl", 'rb'))
         word_vectorizer = pickle.load(open("wvector.pkl", 'rb'))
         char_vectorizer = pickle.load(open("cvector1.pkl", 'rb'))
         
-        train_word_features = word_vectorizer.transform(data.cleaned)
-        train_char_features = char_vectorizer.transform(data.cleaned)
+        train_word_features = word_vectorizer.transform(data.detokenized)
+        train_char_features = char_vectorizer.transform(data.detokenized)
         train_features = hstack([train_char_features, train_word_features])
         
         
