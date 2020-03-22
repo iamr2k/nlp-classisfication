@@ -52,6 +52,7 @@ def predict():
         message = np.array(message)
         data = pd.DataFrame(message)
         data["content"] = message
+        
         data["cleaned"] = data.content.apply(lambda x: re.sub(r'http\S+', '', x))
         data.cleaned = data.cleaned.apply(lambda x : re.sub("[^A-Za-z" "]+"," ",x).lower())
         data.cleaned = data.cleaned.apply(lambda x : re.sub("[0-9" "]+"," ",x))
@@ -67,7 +68,7 @@ def predict():
         data.tokenized = data.tokenized.apply(stem)
         data["detokenized"] = data.tokenized.apply(detok)
 
-        loaded_model = pickle.load(open("model2.pkl", 'rb'))
+        loaded_model = pickle.load(open("modelv(2).pkl", 'rb'))
         word_vectorizer = pickle.load(open("rfwvector.pkl", 'rb'))
         char_vectorizer = pickle.load(open("rfcvector1.pkl", 'rb'))
         
