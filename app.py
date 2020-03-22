@@ -73,8 +73,8 @@ def predict():
         data["detokenized"] = data.lemmatized.apply(detok)
 
         loaded_model = pickle.load(open("rfmodel.pkl", 'rb'))
-        word_vectorizer = pickle.load(open("rfwvector2.pkl", 'rb'))
-        char_vectorizer = pickle.load(open("rfcvector2.pkl", 'rb'))
+        word_vectorizer = pickle.load(open("rfwvector3.pkl", 'rb'))
+        char_vectorizer = pickle.load(open("cvector.pkl", 'rb'))
         
         train_word_features = word_vectorizer.transform(data.detokenized)
         train_char_features = char_vectorizer.transform(data.detokenized)
