@@ -1,13 +1,17 @@
     <!DOCTYPE html>
+
+
     <html lang="en">
     <head>
         <link rel="icon" src="icon.png" type="image/png" sizes="16x16">
         <link href="https://fonts.googleapis.com/css?family=Comfortaa&display=swap" rel="stylesheet">
         <meta charset="UTF-8">
-        <title>ML APP</title>
+        <title>Email text classifier</title>
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+        <link href="https://fonts.googleapis.com/css?family=Exo+2&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
             integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+
 
     </head>
     <body>
@@ -17,19 +21,17 @@
         <header>
         
     	<div id="brandname">
-            <title>ABUSIVE CONTENT PREDICTION</title>
+            <title>Email text classifier</title>
 
             
             <img class="XLR" src="{{ url_for('static', filename='logo.png') }}">
-    		<right> Deep Learning </right>
+    		<right> Machine Learning </right>
             <center> </center>
     	    <right> Abusive content predictor </right>   
     	    
             <div class="button_group">
 
-                    <div id="fb" class="sm_b" id="facebook" onclick="window.open('https://www.linkedin.com/in/rahulr2k', '_blank')"> <i class="fab fa-linkedin-in"></i> </div>
-                    <div id="fb" class="sm_b" id="facebook" onclick="window.open('https://www.instagram.com/i.m_r2k', '_blank')" > <i class="fab fa-instagram"></i> </div>
-                    <div id="fb" class="sm_b" id="facebook" onclick="window.open('https://github.com/rahulr2k/', '_blank')" > <i class="fab fa-github"></i> </div>
+                    <div id="fb" class="sm_b" id="facebook" onclick="window.open('https://github.com/rahulr2k/nlp-classifier', '_blank')" > <i class="fab fa-github"></i> </div>
                     
             </div>
 
@@ -78,9 +80,14 @@
 
 		
 	{% if prediction == "Abusive" %}
-	<h2 style="color:red;">Abusive</h2>
+    <h2 style="color:red;">Abusive </h2> 
+    <p> Probability = {{prob[0][0]}} </p> <br>
+    <h6>Time taken for converting text to numbers = {{extime}} <br> taken for prediction {{prtime}}</h6>
+    
 	{% elif prediction == "Non Abusive"%}
-	<h2 style="color:blue;">Not abusive</h2>
+    <h2 style="color:blue;">Not abusive </h2> 
+    <p> Probability = {{prob[0][1]}} </p><br>
+     <h6>Time taken for converting text to numbers = {{extime}} <br> taken for prediction {{prtime}}</h6>
 	{% endif %}
 
 	</div>

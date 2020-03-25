@@ -1,11 +1,28 @@
     <!DOCTYPE html>
+
+    <script type="text/javascript">
+        function loading(){
+            $("#loader").show();
+            $("#content").hide();       
+        }
+    </script>
+<style>
+div#loader {
+    width: 35px;
+    height: 35px;
+    display: none;
+    background: href ="{{ url_for('static', filename='loading.gif') }}" no-repeat;
+    cursor: wait;
+    }
+</style>
     <html lang="en">
     <head>
         
-        <link href="https://fonts.googleapis.com/css?family=Comfortaa&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Baloo+2&display=swap" rel="stylesheet">
         <meta charset="UTF-8">
-        <title>ML APP</title>
+        <title>Email text classifier</title>
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+        <link href="https://fonts.googleapis.com/css?family=Exo+2&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
             integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 
@@ -21,14 +38,11 @@
 
             
             <img class="XLR" src="{{ url_for('static', filename='logo.png') }}">
-    		<right> Machine Learning </right>
-            <center> </center>
+    		<right> Machine Learning </right><br>
     	    <right> Email text classifier </right>   
     	    
             <div class="button_group">
-
-                    <div id="fb" class="sm_b" id="facebook" onclick="window.open('https://www.linkedin.com/in/rahulr2k', '_blank')"> <i class="fab fa-linkedin-in"></i> </div>
-                    <div id="fb" class="sm_b" id="facebook" onclick="window.open('https://github.com/rahulr2k/', '_blank')" > <i class="fab fa-github"></i> </div>
+                    <div id="fb" class="sm_b" id="facebook" onclick="window.open('https://github.com/rahulr2k/nlp-classifier', '_blank')" > <i class="fab fa-github"></i> </div>
                     
             </div>
 
@@ -36,7 +50,7 @@
             
               
         </header>
-
+        <div class="loader"></div>
 
         <div class="content">   
 
@@ -53,12 +67,12 @@
     				<form action="{{ url_for('predict')}}" method="POST">
     				<br>
     				<!-- <input type="text" name="comment"/> -->
-    				<textarea name="message" rows="10" cols="100"></textarea>
+    				<textarea name="message" rows="7" cols="70"></textarea>
     				<br/>
 
-    				<input class="btn1" type=submit value=predict>
+    				<input class="btn1" type=submit value=predict onclick="loading();">
+                    </form>
     		
-        </form>
     		
         </div>
                 
@@ -82,7 +96,7 @@
 
                 <br>
                 <br>
-                </form>
+                
 
     <br>
 

@@ -11,11 +11,17 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.externals import joblib
 import numpy as np
+import nltk
 from nltk.stem import PorterStemmer
 from nltk.tokenize import sent_tokenize, word_tokenize
 from nltk.stem.wordnet import WordNetLemmatizer
-
-
+nltk.download('punkt')
+from nltk.tokenize import word_tokenize
+nltk.download('stopwords')
+from nltk.corpus import stopwords
+nltk.download('wordnet')
+stop_words=set(stopwords.words("english"))
+import time
 def token(text):
     tokenized_word=word_tokenize(text)
     return tokenized_word
@@ -56,6 +62,7 @@ def predict():
         message = np.array(message)
         data = pd.DataFrame(message)
         data["content"] = message
+        t0 = time.time()
         
         data["cleaned"] = data.content.apply(lambda x: re.sub(r'http\S+', '', x))
         data.cleaned = data.cleaned.apply(lambda x : re.sub("[^A-Za-z" "]+"," ",x).lower())
@@ -69,23 +76,23 @@ def predict():
         data.cleaned = data.cleaned.str.replace('subject',' ')
         data["tokenized"] = data.cleaned.apply(token)
         data['lemmatized'] = data.tokenized.apply(lem)
-        data.lemmatized = data.lemmatized.apply(stop)
         data["detokenized"] = data.lemmatized.apply(detok)
-
+        t1 = time.time()
         loaded_model = pickle.load(open("rfmodel.pkl", 'rb'))
-        word_vectorizer = pickle.load(open("wvector.pkl", 'rb'))
-        char_vectorizer = pickle.load(open("cvector1.pkl", 'rb'))
+        word_vectorizer = pickle.load(open("rfwvector2.pkl", 'rb'))
+        char_vectorizer = pickle.load(open("rfcvector2.pkl", 'rb'))
         
         train_word_features = word_vectorizer.transform(data.detokenized)
         train_char_features = char_vectorizer.transform(data.detokenized)
         train_features = hstack([train_char_features, train_word_features])
         
-        
+        t2 = time.time()
         my_prediction = loaded_model.predict(train_features)
-        
+        prob = loaded_model.predict_proba(train_features)
+        extime = round(t1-t0 ,2)
+        prtime = round(t2-t1 ,2)
 
-
-    return render_template('result.html',prediction = my_prediction[0])
+    return render_template('result.html',prediction = my_prediction[0],prob = prob,extime = extime  , prtime = prtime)
 
 
 
